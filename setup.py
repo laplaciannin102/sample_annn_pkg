@@ -44,7 +44,7 @@ with open(file=license_path, mode='r', encoding='utf-8') as f:
 
 setup(
     name='sample_annn_pkg',
-    version='0.0.10',
+    version='0.0.13',
     description='sample_annn_pkg description',
     long_description=readme_txt,
     author='hoge',

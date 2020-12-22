@@ -1,20 +1,31 @@
 # sample_annn_pkg
 
+- author: laplaciannin102
+- date: 2020/12/23
+
 ---
 
-## table of contents
+## Table of Contents
 
 - [sample_annn_pkg](#sample_annn_pkg)
-  - [table of contents](#table-of-contents)
-  - [how to install](#how-to-install)
+  - [Table of Contents](#table-of-contents)
+  - [How to install](#how-to-install)
   - [Github repository](#github-repository)
-  - [ディレクトリ構成](#ディレクトリ構成)
-  - [requirements.txtについて](#requirementstxtについて)
-  - [.pypirc](#pypirc)
-  - [MANIFEST.in](#manifestin)
-  - [登録](#登録)
+  - [PyPI repository](#pypi-repository)
     - [TestPyPI](#testpypi)
     - [PyPI](#pypi)
+  - [Directory structure](#directory-structure)
+  - [Easy installation sample](#easy-installation-sample)
+  - [各ファイルの説明 or 書き方](#各ファイルの説明-or-書き方)
+    - [README.md / README.rst](#readmemd--readmerst)
+    - [LICENSE](#license)
+    - [requirements.txt](#requirementstxt)
+    - [MANIFEST.in](#manifestin)
+    - [.pypirc](#pypirc)
+  - [登録](#登録)
+    - [前提](#前提)
+    - [TestPyPI](#testpypi-1)
+    - [PyPI](#pypi-1)
   - [参考](#参考)
     - [公式](#公式)
     - [Qiita系](#qiita系)
@@ -23,7 +34,7 @@
 
 ---
 
-## how to install
+## How to install
 
 ```shell
 pip install sample_annn_pkg
@@ -31,29 +42,73 @@ pip install sample_annn_pkg
 
 ## Github repository
 
-- []
+- [https://github.com/laplaciannin102/sample_annn_pkg](https://github.com/laplaciannin102/sample_annn_pkg)
+
+## PyPI repository
+
+### TestPyPI
+
+- [https://pypi.org/project/sample_annn_pkg/](https://pypi.org/project/sample_annn_pkg/)
+
+### PyPI
+
+- [https://test.pypi.org/project/sample_annn_pkg/](https://test.pypi.org/project/sample_annn_pkg/)
 
 ---
 
-## ディレクトリ構成
+## Directory structure
 
 ```
+sample_annn_pkg
 ├── .gitignore
 ├── LICENSE
 ├── MANIFEST.in
 ├── README.md
+├── README.rst
 ├── sample_annn_pkg
 │   ├── __init__.py
-│   ├── dependency.py
-│   ├── scripts
-│   │   ├── __init__.py
-│   │   └── command.py
-│   └── verify.py
+│   ├── sample_main_module.py
+│   └── sample_sub_module.py
 ├── requirements.txt
 └── setup.py
 ```
 
-## requirements.txtについて
+## Easy installation sample
+
+- command
+
+```shell
+>> git clone https://github.com/laplaciannin102/sample_annn_pkg.git
+>> cd sample_annn_pkg
+>> python setup.py sdist upload -r testpypi
+>> pip install --index-url https://test.pypi.org/simple/ sample_annn_pkg
+```
+
+- python
+
+```python
+>>> import sample_annn_pkg as sap
+>>> sap.func02()
+# success!!
+# poyo
+```
+
+---
+
+## 各ファイルの説明 or 書き方
+
+### README.md / README.rst
+
+- README.md: Githubに表示するためのMarkdown形式Readmeファイル
+- README.md: PyPIに表示するためのsetup.pyからlong_descriptionとして読み込むためのRST形式Readmeファイル
+  - RST: reStructuredTextの略.
+  - `pandoc --from markdown --to rst` 等でRST形式に変換してしまうと楽.
+
+### LICENSE
+
+- MITなどのライセンス情報を記入.
+
+### requirements.txt
 
 ```
 # pypiに存在するパッケージ名はそのまま書いていい
@@ -66,7 +121,18 @@ git://git@github.com/foo/foo.git
 git+ssh://git@github.com/foo/foo.git
 ```
 
-## .pypirc
+### MANIFEST.in
+
+- 必要なファイルはMANIFEST.inに書き込んでおく
+
+```
+include README.md
+include README.rst
+include requirements.txt
+include LICENSE
+```
+
+### .pypirc
 
 - C:\Users\<user> ディレクトリに.pypircというファイルを作成する
   - C:\Users\<user>\.pypirc
@@ -91,34 +157,33 @@ username=<TestPyPI username>
 password=<TestPyPI password>
 ```
 
-## MANIFEST.in
 
-- 必要なファイルはMANIFEST.inに書き込んでおく
-
-```
-include README.md
-include README.rst
-include requirements.txt
-include LICENSE
-```
+---
 
 ## 登録
 
+### 前提
+
+- 最終的には **PyPI** に登録するが, 先に試験的に **TestPyPI** に登録することができる.
+
+- 先に **.pypirc** の作成をしておく必要がある.
+
 ### TestPyPI
 
-- TestPyPIへのパッケージアップロード
+- TestPyPIへのパッケージアップロード.
   - パッケージ情報登録は不要.
-  - アップロードするパッケージの`setup.py`があるディレクトリで、下記コマンドを実行.
+  - アップロードするパッケージの`setup.py`があるディレクトリで, 下記コマンドを実行.
 
 `python setup.py sdist upload -r testpypi`
 
-- TestPyPIからのインストール
-  - 変更後のリポジトリURLからインストールする
+- TestPyPIからのインストール.
+  - 変更後のリポジトリURLからインストールする.
 
-`pip install --index-url https://test.pypi.org/simple/ PACKAGE_NAME`
+`pip install --index-url https://test.pypi.org/simple/ <PACKAGE_NAME>`
 
 ### PyPI
-- PyPIへのパッケージアップロード
+
+- PyPIへのパッケージアップロード.
   - TestPyPIと同様にパッケージ情報登録は不要.
 
 `python setup.py sdist upload`
