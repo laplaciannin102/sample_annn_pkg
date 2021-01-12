@@ -44,15 +44,28 @@ with open(file=license_path, mode='r', encoding='utf-8') as f:
 
 setup(
     name='sample_annn_pkg',
-    version='0.0.14',
+    version='0.0.26',
     description='sample_annn_pkg description',
     long_description=readme_txt,
     author='hoge',
     author_email='fuga@email.com',
     install_requires=requirements_list,
-    url='',
+    url='https://github.com/laplaciannin102/sample_annn_pkg',
     license=license_txt,
-    packages=find_packages(exclude=('tests', 'docs')),
+    # packages=find_packages(exclude=('tests', 'docs')),
+    packages=[
+        'sample_annn_pkg',
+        'sample_annn_pkg/datasets'
+    ],
+    package_dir={
+        'sample_annn_pkg': 'sample_annn_pkg' # {'mypkg': 'src/mypkg'}
+    },
+    package_data={
+        'sample_annn_pkg': [
+            'datasets/sample_data/*.csv',
+            'datasets/sample_data/*.xlsx'
+        ]
+    },
     test_suite='tests'
 )
 

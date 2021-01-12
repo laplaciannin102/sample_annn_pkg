@@ -1,7 +1,7 @@
 # sample_annn_pkg
 
 - author: laplaciannin102
-- date: 2020/12/23
+- date: 2021/01/12
 
 ---
 
@@ -21,6 +21,8 @@
     - [LICENSE](#license)
     - [requirements.txt](#requirementstxt)
     - [MANIFEST.in](#manifestin)
+    - [setup.py](#setuppy)
+      - [パッケージデータに関して](#パッケージデータに関して)
     - [.pypirc](#pypirc)
   - [登録](#登録)
     - [前提](#前提)
@@ -68,7 +70,13 @@ sample_annn_pkg
 ├── sample_annn_pkg
 │   ├── __init__.py
 │   ├── sample_main_module.py
-│   └── sample_sub_module.py
+│   ├── sample_sub_module.py
+│   └── datasets
+│       ├── __init__.py
+│       ├── load_datasets.py
+│       └── sample_data
+│           ├── sample_data.csv
+│           └── sample_data.xlsx
 ├── requirements.txt
 └── setup.py
 ```
@@ -91,6 +99,23 @@ sample_annn_pkg
 >>> sap.func02()
 # success!!
 # poyo
+>>> df0 = sap.datasets.load_sample_data0() # load csv
+# load sample data0
+# file format: csv
+# sample pandas.DataFrame:
+#    col1  col2  col3
+# 0     1     2     3
+# 1     4     5     6
+# 2     7     8     9
+>>> df1 = sap.datasets.load_sample_data1() # load excel
+# load sample data1
+# file format: excel
+# sample pandas.DataFrame:
+#    col4  col5  col6
+# 0  hoge    10    11
+# 1  fuga    12    13
+# 2  poyo    14    15
+# 3  piyo    16    17
 ```
 
 ---
@@ -123,7 +148,10 @@ git+ssh://git@github.com/foo/foo.git
 
 ### MANIFEST.in
 
-- 必要なファイルはMANIFEST.inに書き込んでおく
+- 必要なファイルはMANIFEST.inに書き込んでおく.
+- 関連ファイルの書き方は[こちらのURL](https://docs.python.org/ja/3/distutils/sourcedist.html)を参照.
+  - [https://docs.python.org/ja/3/distutils/sourcedist.html](https://docs.python.org/ja/3/distutils/sourcedist.html)
+  - [https://docs.python.org/ja/3/distutils/commandref.html#sdist-cmd](https://docs.python.org/ja/3/distutils/commandref.html#sdist-cmd)
 
 ```
 include README.md
@@ -131,6 +159,55 @@ include README.rst
 include requirements.txt
 include LICENSE
 ```
+
+- 例
+  - *.txt のパターンに当てはまる全てのファイルを含む.
+  - examplesディレクトリにある*.txt *.pyに当てはまる全てのファイルを含む.
+  - examples/sample?/buildに当てはまる全てのディレクトリを除外する.
+
+```
+include *.txt
+recursive-include examples *.txt *.py
+prune examples/sample?/build
+```
+
+### setup.py
+
+- [Python公式サイト(setup スクリプトを書く)](https://docs.python.org/ja/3/distutils/setupscript.html)
+  - [https://docs.python.org/ja/3/distutils/setupscript.html](https://docs.python.org/ja/3/distutils/setupscript.html)
+
+- NumpyやScipyのモジュールでもsetuptoolsのsetupと似たものが存在する.
+
+#### パッケージデータに関して
+- packages=find_packages(exclude=('tests', 'docs'))で全パッケージのリストを取得.
+
+- 公式サイトからの例
+
+- ディレクトリ構成
+
+```
+setup.py
+src/
+    mypkg/
+        __init__.py
+        module.py
+        data/
+            tables.dat
+            spoons.dat
+            forks.dat
+```
+
+- setup.py
+
+```python
+setup(...,
+      packages=['mypkg'],
+      package_dir={'mypkg': 'src/mypkg'},
+      package_data={'mypkg': ['data/*.dat']},
+      )
+```
+
+---
 
 ### .pypirc
 
