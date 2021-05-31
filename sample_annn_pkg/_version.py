@@ -2,14 +2,9 @@
 
 
 # --------------------------------------------------------------------------------
-# Load modules
+# Constants
 # --------------------------------------------------------------------------------
 
-# import version
-from ._version import __version__
+# version
+__version__ = '0.0.28'
 
-# function and class
-from .sample_main_module import func02, PoyoClass
-
-# sample_datasets
-from .datasets import *

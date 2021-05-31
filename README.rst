@@ -8,19 +8,19 @@ sample_annn_pkg
 Table of Contents
 -----------------
 
--  `sample_annn_pkg`_
+-  `sample_annn_pkg <#sample_annn_pkg>`__
 
-   -  `Table of Contents`_
-   -  `How to install`_
-   -  `Github repository`_
-   -  `PyPI repository`_
+   -  `Table of Contents <#table-of-contents>`__
+   -  `How to install <#how-to-install>`__
+   -  `Github repository <#github-repository>`__
+   -  `PyPI repository <#pypi-repository>`__
 
-      -  `TestPyPI`_
-      -  `PyPI`_
+      -  `TestPyPI <#testpypi>`__
+      -  `PyPI <#pypi>`__
 
-   -  `Directory structure`_
-   -  `Easy installation sample`_
-   -  `How to upload pypi package`_
+   -  `Directory structure <#directory-structure>`__
+   -  `Easy installation sample <#easy-installation-sample>`__
+   -  `How to upload pypi package <#how-to-upload-pypi-package>`__
 
 --------------
 
@@ -72,6 +72,9 @@ Directory structure
    │       └── sample_data
    │           ├── sample_data.csv
    │           └── sample_data.xlsx
+   ├── tests
+   │   ├── __init__.py
+   │   └── test_main_moduleXXX.py
    ├── requirements.txt
    └── setup.py
 
@@ -121,14 +124,3 @@ How to upload pypi package
 -  access to this URL
 
    -  https://github.com/laplaciannin102/sample_annn_pkg/blob/master/docs/how_to_upload_pypi_pkg.md
-
-.. _sample_annn_pkg: #sample_annn_pkg
-.. _Table of Contents: #table-of-contents
-.. _How to install: #how-to-install
-.. _Github repository: #github-repository
-.. _PyPI repository: #pypi-repository
-.. _TestPyPI: #testpypi
-.. _PyPI: #pypi
-.. _Directory structure: #directory-structure
-.. _Easy installation sample: #easy-installation-sample
-.. _How to upload pypi package: #how-to-upload-pypi-package

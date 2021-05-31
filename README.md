@@ -52,6 +52,7 @@ sample_annn_pkg
 ├── README.rst
 ├── sample_annn_pkg
 │   ├── __init__.py
+│   ├── _version.py
 │   ├── sample_main_module.py
 │   ├── sample_sub_module.py
 │   └── datasets

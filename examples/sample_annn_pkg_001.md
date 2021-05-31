@@ -1,8 +1,29 @@
 # Load modules
 
+## load sample module
+
 
 ```python
 import sample_annn_pkg as sap
+```
+
+## check version
+
+
+```python
+sap.__version__
+```
+
+
+
+
+    '0.0.28'
+
+
+
+
+```python
+
 ```
 
 # Samples
@@ -17,6 +38,13 @@ sap.func02()
     success!!
     poyo
     
+
+
+
+
+    12345
+
+
 
 ## sample002
 
@@ -162,3 +190,40 @@ df1
 </div>
 
 
+
+## sample004
+
+
+```python
+try:
+    sap.func01
+except Exception as e:
+    print(e)
+```
+
+    module 'sample_annn_pkg' has no attribute 'func01'
+    
+
+## sample005
+
+
+```python
+pc = sap.PoyoClass()
+
+print(pc.get_hoge())
+print('*' * 20)
+pc.set_hoge(123)
+print(pc.get_hoge())
+```
+
+    hoge num: 100
+    100
+    ********************
+    hoge num: 123
+    123
+    
+
+
+```python
+
+```

@@ -10,6 +10,14 @@ from setuptools import setup, find_packages
 
 
 # --------------------------------------------------------------------------------
+# Constants
+# --------------------------------------------------------------------------------
+
+pkg_name = 'sample_annn_pkg'
+
+
+
+# --------------------------------------------------------------------------------
 # read files
 # --------------------------------------------------------------------------------
 
@@ -36,6 +44,9 @@ license_path = './LICENSE'
 with open(file=license_path, mode='r', encoding='utf-8') as f:
     license_txt = f.read()
 
+# get version(__version__)
+exec(open('{}/_version.py'.format(pkg_name)).read())
+
 
 
 # --------------------------------------------------------------------------------
@@ -43,9 +54,9 @@ with open(file=license_path, mode='r', encoding='utf-8') as f:
 # --------------------------------------------------------------------------------
 
 setup(
-    name='sample_annn_pkg',
-    version='0.0.26',
-    description='sample_annn_pkg description',
+    name=pkg_name,
+    version=__version__,
+    description='{} description'.format(pkg_name),
     long_description=readme_txt,
     author='hoge',
     author_email='fuga@email.com',
