@@ -60,6 +60,9 @@ sample_annn_pkg
 │       └── sample_data
 │           ├── sample_data.csv
 │           └── sample_data.xlsx
+├── tests
+│   ├── __init__.py
+│   └── test_main_moduleXXX.py
 ├── requirements.txt
 └── setup.py
 ```

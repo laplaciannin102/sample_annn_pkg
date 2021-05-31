@@ -1,7 +1,7 @@
 # sample_annn_pkg
 
 - author: laplaciannin102
-- date: 2021/01/12
+- date: 2021/06/01
 
 ---
 
@@ -24,6 +24,7 @@
     - [setup.py](#setuppy)
       - [パッケージデータに関して](#パッケージデータに関して)
     - [.pypirc](#pypirc)
+  - [testについて](#testについて)
   - [登録](#登録)
     - [前提](#前提)
     - [TestPyPI](#testpypi-1)
@@ -77,6 +78,9 @@ sample_annn_pkg
 │       └── sample_data
 │           ├── sample_data.csv
 │           └── sample_data.xlsx
+├── tests
+│   ├── __init__.py
+│   └── test_main_moduleXXX.py
 ├── requirements.txt
 └── setup.py
 ```
@@ -175,7 +179,6 @@ prune examples/sample?/build
 
 - [Python公式サイト(setup スクリプトを書く)](https://docs.python.org/ja/3/distutils/setupscript.html)
   - [https://docs.python.org/ja/3/distutils/setupscript.html](https://docs.python.org/ja/3/distutils/setupscript.html)
-
 - NumpyやScipyのモジュールでもsetuptoolsのsetupと似たものが存在する.
 
 #### パッケージデータに関して
@@ -211,11 +214,11 @@ setup(...,
 
 ### .pypirc
 
-- C:\Users\<user> ディレクトリに.pypircというファイルを作成する
+- 後述のTestPyPIやPyPIへの登録が容易になる.
+- C:\Users\<user> ディレクトリに.pypircというファイルを作成する.
   - C:\Users\<user>\.pypirc
-
 - 中身
-  - PyPIとTestPyPIに登録した際のユーザ名とパスワードを書き込む
+  - PyPIとTestPyPIに登録した際のユーザ名とパスワードを書き込む.
 
 ```
 [distutils]
@@ -234,6 +237,55 @@ username=<TestPyPI username>
 password=<TestPyPI password>
 ```
 
+---
+
+## testについて
+
+- モジュールの品質を担保するために, 予めモジュールのテストをしておくことが重要.
+- [テスト方法例(推奨)]
+  - testsディレクトリを作成する.
+  - 下記の様なテスト用Pythonスクリプトを作成し, testを実行.
+    - testは次のコマンドで行うことができる.
+      - `python -m unittest discover`
+  - 通り次第, testsに格納しておく.
+
+```python
+from context import sample_annn_pkg as sap
+import unittest
+
+class TestMainModule(unittest.TestCase):
+
+    def setUp(self):
+        """
+        最初に実行されるメソッド
+        """
+
+    def test_func(self):
+        """
+        functionをtestするメソッド
+        """
+        actual = sap.func01
+        expected = 12345
+
+        self.assertEqual(expected, actual)
+
+    def tearDown(self):
+        """
+        最後に実行されるメソッド
+        """
+        print('tear down main module')
+
+        # delete poyo class object
+        del self.pc
+
+        print('test end!!')
+        print('*' * 80)
+        print()
+
+
+if __name__ == '__main__':
+    unittest.main()
+```
 
 ---
 
@@ -242,7 +294,6 @@ password=<TestPyPI password>
 ### 前提
 
 - 最終的には **PyPI** に登録するが, 先に試験的に **TestPyPI** に登録することができる.
-
 - 先に **.pypirc** の作成をしておく必要がある.
 
 ### TestPyPI
@@ -277,12 +328,10 @@ password=<TestPyPI password>
 ### Qiita系
 
 - [（インターン向けに書いた）Pythonパッケージを作る方法](https://qiita.com/Ultra-grand-child/items/7717f823df5a30c27077)
-
 - [自作のPythonパッケージをPyPIに登録してpip install可能にする](https://qiita.com/shonansurvivors/items/0fbcbfde129f2d26301c)
-
 - [PyPIデビューしたい人の為のPyPI登録の手順](https://qiita.com/kinpira/items/0a4e7c78fc5dd28bd695)
-
 - [PyPI 新URLへの登録・アップロード](https://qiita.com/ukiuki-satoshi/items/77ef1e39598226f1cff7)
+- [Python標準のunittestの使い方メモ](https://qiita.com/aomidro/items/3e3449fde924893f18ca)
 
 ### 色々
 
