@@ -29,6 +29,7 @@
     - [前提](#前提)
     - [TestPyPI](#testpypi-1)
     - [PyPI](#pypi-1)
+    - [2022/10/10追記](#20221010追記)
   - [参考](#参考)
     - [公式](#公式)
     - [Qiita系](#qiita系)
@@ -319,12 +320,43 @@ if __name__ == '__main__':
 
 ---
 
+### 2022/10/10追記
+
+- 現在では`python setup.py`を実行するより，**twine**を使用することが推奨されている．
+
+以下，Twineドキュメントより引用
+
+> #### Using Twine
+>
+> 1. Create some distributions in the normal way:
+> 
+> ```python -m build```
+> 
+> 2. Upload to Test PyPI and verify things look right:
+> 
+> ```twine upload -r testpypi dist/*```
+> 
+> Twine will prompt for your username and password.
+> 
+> 3. Upload to PyPI:
+> 
+> ```twine upload dist/*```
+> 
+> 4. Done!
+
+- Twine参考:
+  - https://twine.readthedocs.io/en/latest/
+
+---
+
 ## 参考
 
 ### 公式
 
 - [6. Python Package Index (PyPI)](https://docs.python.org/ja/3.6/distutils/packageindex.html)
 - [Packaging Python Projects](https://packaging.python.org/tutorials/packaging-projects/)
+
+- [Twine](https://twine.readthedocs.io/en/latest/)
 
 ### Qiita系
 
